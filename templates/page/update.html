@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Match Update{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="country1">HOST</label>
+    <input name="country1" id="country1" value="{{ request.form['country1'] or match['country1'] }}" required>
+    <label for="country2">GUEST</label>
+    <input name="country2" id="country2" value="{{ request.form['country2'] or match['country2'] }}" required>
+
+    <label for="result1">result1</label>
+    <input name="result1" id="result1" value="{{ request.form['result1'] or match['result1'] }}">
+    <label for="result2">result2</label>
+    <input name="result2" id="result2" value="{{ request.form['result2'] or match['result2'] }}">
+
+    <input type="submit" value="Save">
+  </form>
+ <form action="{{ url_for('page.delete', id=match['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+{% endblock %}

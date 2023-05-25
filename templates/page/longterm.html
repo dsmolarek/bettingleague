@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Obstawiaj{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<center>
+
+<table class="table2">
+<tr>
+<th>Nazwa użytkownika</th>
+<th>Król strzelców</th>
+<th>Zwycięzca</th>
+</tr>
+{% for longterm_bet in longterm_bets %}
+<tr>
+        <td><b>{{ longterm_bet['user_id'] }}</b></td>
+        <td>{{ longterm_bet['top_scorer'] }}</td>
+        <td>{{ longterm_bet['winner'] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+</center>
+{% endblock %}

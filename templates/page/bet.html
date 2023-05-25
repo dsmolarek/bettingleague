@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Obstawiaj{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="result1">{{ match['country1'] }}</label>
+    <input name="result1" id="result1" value="{{ request.form['result1'] }}" required>
+    <label for="result2">{{ match['country2'] }}</label>
+    <input name="result2" id="result2" value="{{ request.form['result2'] }}" required>
+{% if current_hour < hour[2] %}
+<input type="submit" value="Save">
+{% endif %}
+  </form>
+{% endblock %}

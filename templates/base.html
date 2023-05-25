@@ -1,0 +1,48 @@
+<!doctype html>
+<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{% endblock %} Euro</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<body>
+
+
+<div class="header">
+ 
+  {% if g.user %}
+      Zalogowany jako: {{ g.user['username'] }} </br>Twoja liczba punktów: {{ g.user['points'] }} </br></br>
+      <button class="loginbutton" align="right"><a href="{{ url_for('auth.logout') }}">Wyloguj</a></button>
+  {% else %}
+  <button class="loginbutton"><a href="{{ url_for('auth.login') }}">Logowanie</a></button>
+  <button class="loginbutton"><a href="{{ url_for('auth.register') }}">Rejestracja</a></button></br></br></br>
+  {% endif %}
+</br></br></br></br></br></br></br>
+
+</div>
+
+<div class="menu">
+<ul>
+  <li><a href="">Strona główna</a></li>
+  <li><a href="add_bet">Obstawiaj</a></li>
+  <li><a href="bets">Typy</a></li>
+  <li><a href="longterm">Typy długoterminowe</a></li>
+</ul>
+</div>
+
+
+
+
+  <div>
+    {% block header %}{% endblock %}
+  </div>
+
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+
+  <div>
+    {% block content %}{% endblock %}
+  </div>
+</div>
+
+
+</body>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<center>  
+<h1>{% block title %}Tabela{% endblock %}</h1>
+</center>
+{% endblock %}
+
+{% block content %}
+
+<center>
+<table class="table1">
+<tr>
+<th>Nazwa użytkownika</th>
+<th>Punkty</th>
+<th>Dokładne wyniki</th>
+</tr>
+{% for user in users %}
+<tr>
+        <td><b>{{ user['username'] }}</b></td>
+        <td>{{ user['points'] }}</td>
+        <td>{{ user['correct_scores'] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+</center>
+{% endblock %}
