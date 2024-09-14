@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<center>
+    <h1>{% block title %}Profil{% endblock %}</h1>
+</center>
+{% endblock %}
+
+{% block content %}
+<center>
+    <h1>{{ user[0] }}</h1>
+    <h3>Liczba punktów: {{ user[1] }}</h3>
+    <h3>Dokładne wyniki: {{ user[2] }}</h3>
+    <table class="table3">
+        <tr>
+            <th>Mecz</th>
+            <th>Typowany wynik</th>
+            <th>Końcowy wynik</th>
+            <th>Punkty</th>
+        </tr>
+        {% for bet in user_bets %}
+        <tr data-value="{{ bet.match_id }}">
+            <td><b>{{ bet.country1 }} - {{ bet.country2 }}</b></td>
+            <td>{{ bet.result1 }} - {{ bet.result2 }}</td>
+            <td>{{ bet.match_result1 }} - {{ bet.match_result2 }}</td>
+            <td>{{ bet.points }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+{% endblock %}
