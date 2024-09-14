@@ -10,8 +10,10 @@
     <input name="country1" id="country1" value="{{ request.form['country1'] }}" required>
     <label for="country2">Goście</label>
     <input name="country2" id="country2" value="{{ request.form['country2'] }}" required>
-    <label for="date">Data w formacie YYYY-MM-DD HH:MM</label>
+    <label for="date">Data w formacie YYYY-MM-DD</label>
     <input name="date" id="date" value="{{ request.form['date'] }}" required>
+    <label for="hour">Godzina rozpoczęcia meczu</label>
+    <input name="hour" id="hour" value="{{ request.form['hour'] }}" required>
     <input type="submit" value="Save">
   </form>
 {% endblock %}

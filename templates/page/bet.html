@@ -10,8 +10,10 @@
     <input name="result1" id="result1" value="{{ request.form['result1'] }}" required>
     <label for="result2">{{ match['country2'] }}</label>
     <input name="result2" id="result2" value="{{ request.form['result2'] }}" required>
-{% if current_hour < hour[2] %}
-<input type="submit" value="Save">
-{% endif %}
+    {% if current_hour < hour[2] %}
+      <input type="submit" value="Zapisz">
+    {% else %}
+      <p>Mecz jest już zakończony. Nie możesz już obstawiać.</p>
+    {% endif %}
   </form>
 {% endblock %}

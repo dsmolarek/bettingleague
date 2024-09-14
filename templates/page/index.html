@@ -7,22 +7,23 @@
 {% endblock %}
 
 {% block content %}
-
+<center><h3>Przypominam, że klikając w nazwę użytkownika w tabeli, można wejść na profil wybranego gracza i sprawdzić historię zdobycia punktów </h3></center>
 <center>
 <table class="table1">
 <tr>
+<th>Lp.</th>
 <th>Nazwa użytkownika</th>
 <th>Punkty</th>
 <th>Dokładne wyniki</th>
 </tr>
-{% for user in users %}
+{% for user in users2 %}
 <tr>
-        <td><b>{{ user['username'] }}</b></td>
-        <td>{{ user['points'] }}</td>
-        <td>{{ user['correct_scores'] }}</td>
+		<td>{{ user[4] }} </td>
+        <td><b><a href="{{ url_for('page.profile', id=user[3]) }}">{{ user[0] }}</a></b></td>
+        <td>{{ user[1] }}</td>
+        <td>{{ user[2] }}</td>
 </tr>
 {% endfor %}
 
 </table>
-</center>
-{% endblock %}
+</center>{% endblock %}

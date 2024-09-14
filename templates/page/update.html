@@ -18,7 +18,5 @@
 
     <input type="submit" value="Save">
   </form>
- <form action="{{ url_for('page.delete', id=match['id']) }}" method="post">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
-  </form>
+
 {% endblock %}

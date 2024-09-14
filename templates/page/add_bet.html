@@ -1,56 +1,41 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<center>  
-<h1>{% block title %}Dzisiejsze mecze{% endblock %}</h1>
+<center>
+    <h1>{% block title %}Dzisiejsze mecze{% endblock %}</h1>
 </center>
 {% endblock %}
 
-
-
-
 {% block content %}
-      {% for match in matches %}
+    <!-- Lista dzisiejszych meczów -->
+    {% for match in matches %}
         <center>
-          <b><h10>{{ match[1] }}</h10></b>
-	  <a><h10>-</h10></a>
-          <b><h10>{{ match[2] }}</h10></b>
-          {% if g.user['username'] == "admin" %}
-            <a class="action" href="{{ url_for('page.update', id=match['id']) }}">Edit</a>
-          {% endif %}
-          {% if current_hour < match['date3'] %}
-            <a class="action" href="{{ url_for('page.bet', id=match['id']) }}">Obstawiaj</a>
-          {% endif %}
-
-          {% if not loop.last %}
-          {% endif %}
+            <b>{{ match[1] }}</b> - <b>{{ match[2] }}</b>
+            {% if current_hour < match['hour'] %}
+                <a class="action" href="{{ url_for('page.bet', id=match['id']) }}">Obstawiaj</a>
+            {% endif %}
+            {% if g.user['username'] in ["Smolar", "Bolek", "Fryze"] %}
+                <a class="action" href="{{ url_for('page.update', id=match['id']) }}">Wpisz wynik zakończonego meczu</a>
+            {% endif %}
         </center>
+        <br>
+    {% endfor %}
 
-      {% endfor %}
-</br></br></br>
-<center><a>Twoje typy na dzisiejsze mecze to: </a></center>
-{% for typ in typy %}
+    <br><br><br>
+    <!-- Twoje typy na dzisiejsze mecze -->
+    <center><a>Twoje typy na dzisiejsze mecze to:</a></center>
+    {% for bet in your_bets %}
         <center>
-          <b><h10>{{ typ[2] }}</h10></b>
-	  <a><h10>-</h10></a>
-          <b><h10>{{ typ[3] }}</h10></b>
-          
-	{% if not loop.last %}
-          {% endif %}
+            <b>{{ bet[4] }}</b> - <b>{{ bet[5] }}</b><br>
+            Twój typ: <b>{{ bet[2] }}</b> - <b>{{ bet[3] }}</b>
         </center>
+        <br>
+    {% endfor %}
 
-      {% endfor %}
-
-
+    <!-- Dodawanie meczu dla użytkownika Smolar -->
+    {% if g.user['username'] == "Smolar" %}
+        <center>
+            <a class="action" href="{{ url_for('page.create') }}">Dodaj nowy mecz</a>
+        </center>
+    {% endif %}
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-

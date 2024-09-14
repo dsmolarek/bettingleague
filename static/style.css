@@ -3,8 +3,8 @@ html {
 }
 
 .header {
-  background-image: url("https://i.ibb.co/84v06SF/abcd.png");
-  background-size: cover;
+  background-image: url("https://i.ibb.co/1dNnzHc/banner.png");
+  background-size: 100% auto;
   color: #ffffff;
   padding: 15px;
   margin-bottom: 7px;
@@ -91,10 +91,44 @@ table.table1 tr:nth-child(4) {background-color: #c68c53;}
 table.table2 th, td {
   padding: 15px;
   text-align: left;
+  word-break: break-all
 }
 
 
-table.table2 th {
+table.table3 th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+table.table3 th {
   background-color: #04AA6D;
   color: white;
+}
+
+table.table3 tr:hover {background-color: #fffaeb;}
+
+table.table3 th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+table.table3 tr[data-value='high'] {
+            background-color: green;
+}
+		
+table.table3 tr[data-value='mid'] {
+            background-color: yellow;
+}
+
+table.table3 tr[data-value='low'] {
+            background-color: red;
+}
+
+
+
+.possible {
+    background-color: white;
+}
+.impossible {
+    background-color: red;
 }

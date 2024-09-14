@@ -4,11 +4,16 @@
   <h1>{% block title %}Obstawiaj{% endblock %}</h1>
 {% endblock %}
 
+
 {% block content %}
+ 
+{% if day < 30 %}
+
+
+
 
 <center>
-
-<table class="table2">
+<table class="table3">
 <tr>
 <th>Nazwa użytkownika</th>
 <th>Król strzelców</th>
@@ -16,11 +21,30 @@
 </tr>
 {% for longterm_bet in longterm_bets %}
 <tr>
-        <td><b>{{ longterm_bet['user_id'] }}</b></td>
-        <td>{{ longterm_bet['top_scorer'] }}</td>
-        <td>{{ longterm_bet['winner'] }}</td>
+        <td><b>{{ longterm_bet['username'] }}</b></td>
+        <td class="{% if longterm_bet['ts_poss'] > 0 %}possible{% else %}impossible{% endif %}">{{ longterm_bet['top_scorer'] }}</td>
+        <td class="{% if longterm_bet['w_poss'] > 0 %}possible{% else %}impossible{% endif %}">{{ longterm_bet['winner'] }}</td>
 </tr>
 {% endfor %}
+
+{% else %}
+  <form method="post">
+    <label for="winner">Zwycięzca turnieju</label>
+    <input name="winner" id="winner" value="{{ request.form['winner'] }}" required>
+    <label for="top_scorer">Król strzelców</label>
+    <input name="top_scorer" id="top_scorer" value="{{ request.form['top_scorer'] }}" required>
+<input type="submit" value="Zapisz">
+<center><a>Twoje aktualnie zapisane typy długoterminowe to: </a></center>
+        <center>
+          <b><h10>Zwycięzca turnieju: </h10></b>
+          <b><h10>{{ your_bets[0][1] }}</h10></b>
+	  </br>
+          <b><h10>Król strzelców: </h10></b>
+          <b><h10>{{ your_bets[0][0] }}</h10></b>
+		</center>
+		
+<a>Typy pozostałych graczy wyświetlą się po rozpoczęciu pierwszego meczu. </a>
+{% endif %}
 
 </table>
 </center>

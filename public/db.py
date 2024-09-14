@@ -3,7 +3,7 @@ import click
 from flask import current_app, g
 from flask.cli import with_appcontext
 
-path = r'/usr/home/smolar/domains/mundialito.top/public_python/public/instance/BettingLeague.sqlite'
+path = r'C:\Users\Damian\Desktop\bettingleague\public\instance\BettingLeague.sqlite'
 
 
 def get_db():

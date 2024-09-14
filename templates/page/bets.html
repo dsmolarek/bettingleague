@@ -6,70 +6,91 @@
 </center>
 {% endblock %}
 
-
-
-
 {% block content %}
-
-
-
 <center>
-<a>Zakłady innych osób na dane mecze pojawią się w momencie rozpoczęcia meczu.</a>
-{% for match in matches%}
+<a>Zakłady innych osób na dane mecze pojawią się w momencie rozpoczęcia meczu.</a></br>
 
-{% if current_hour2 < match[4] %}
-<center><a><b> {{ match[1] }} - {{ match[2] }}</b></a></br>
-<a> Liczba oddanych typów na mecz: {{ twoje_typy2[match[0]] }} / 21 </a></br>
-<a><b>Brakuje typów od: </b></a></br>
+{% for match in matches %}
 
-{% for element in braki %}
-<a>{{element}}</br>
+    {% if current_hour2 < match[4] %}
+    <!-- Mecz jeszcze się nie rozpoczął -->
+    <div>
+        <center>
+            <b>{{ match[1] }} - {{ match[2] }}</b></br>
+            Liczba oddanych typów na mecz: {{ twoje_typy2[match[0]] }} / 31</br>
+            <b>Brakuje typów od:</b></br>
+
+            {% if match[0] in missing_bets_names %}
+                {% for user in missing_bets_names[match[0]] %}
+                    <a>{{ user }}</a></br>
+                {% endfor %}
+            {% else %}
+                <a>Wszyscy użytkownicy dodali typy.</a></br>
+            {% endif %}
+        </center>
+    </div>
+    {% else %}
+    <!-- Mecz jest w trakcie -->
+    <b><h1>{{ match[1] }} - {{ match[2] }}</h1></b>
+    <div class="container">
+        <table class="table2" style="float:left;width:33%">
+            <tr>
+                <th>Login</th>
+                <th>{{ match[1] }}</th>
+                <th>{{ match[2] }}</th>
+            </tr>
+            {% for typ in win %}
+                {% if match[0] == typ[1] %}
+                <tr>
+                    <td><b>{{ typ[4] }}</b></td>
+                    <td>{{ typ[2] }}</td>
+                    <td>{{ typ[3] }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+    <div>
+        <table class="table2" style="float:left;width:33%">
+            <tr>
+                <th>Login</th>
+                <th>{{ match[1] }}</th>
+                <th>{{ match[2] }}</th>
+            </tr>
+            {% for typ in draw %}
+                {% if match[0] == typ[1] %}
+                <tr>
+                    <td><b>{{ typ[4] }}</b></td>
+                    <td>{{ typ[2] }}</td>
+                    <td>{{ typ[3] }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+    <div>
+        <table class="table2" style="float:left;width:33%">
+            <tr>
+                <th>Login</th>
+                <th>{{ match[1] }}</th>
+                <th>{{ match[2] }}</th>
+            </tr>
+            {% for typ in lose %}
+                {% if match[0] == typ[1] %}
+                <tr>
+                    <td><b>{{ typ[4] }}</b></td>
+                    <td>{{ typ[2] }}</td>
+                    <td>{{ typ[3] }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+    <div style="clear:both;"></div></br></br></br>
+    {% endif %}
 {% endfor %}
-
-</br></br>
-
-
-
-</center>
-
-{% else %}
-<center>
-<b><h10>{{ match[1] }}</h10></b>
-<a><h10>-</h10></a>
-<b><h10>{{ match[2] }}</h10></b>
-</center>
-<table class="table2">
-<tr>
-<th>Nazwa użytkownika</th>
-<th>{{ match[1] }}</th>
-<th>{{ match[2] }}</th>
-</tr>
-{% for typ in typy %}
-{% if match[0] == typ[1] %}            
-<tr>
-        <td><b>{{ typ[4] }}</b></td>
-        <td>{{ typ[2] }}</td>
-        <td>{{ typ[3] }}</td>
-</tr>
-{% endif %}
-{% endfor %}
-{% endif %}
-
-</table>
-{% endfor %}
-
-</center>
-
+</center></br></br>
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
